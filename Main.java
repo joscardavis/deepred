@@ -8,6 +8,9 @@ class Main {
   public static void main(String[] args) {
     wgame("6R1/p7/3q1kp1/3BRp2/5QP1/1P3P2/P2P2K1/8 w - - 3 41");
   }
+  
+  
+  //  benchmarks the engine with a couple chess puzzles. times its computation
   public static void benchmark(){
     counter = 0;
     board board = new board("4k3/8/8/8/3n4/8/1B6/R3K3 w - - 0 1");
@@ -47,6 +50,7 @@ class Main {
     counter = 0;
 
   }
+  // plays a game with the computer as white
   public static void wgame(String fen){
     board board = new board(fen);
     piece [][] numero = board.getChecker();
@@ -126,7 +130,7 @@ class Main {
     }
 
   }
-
+//  the maximizing part of the algorithm, the part that calculates for white
   public static double maxi(int depth,piece [][] a,double alpha,double beta) {
     if ( depth == 0 ) {
       counter++;
@@ -160,7 +164,7 @@ class Main {
     }
     return alpha;
   }
-
+//  the minimizing part of the algorithm, calculates for black
   public static double mini( int depth,piece [][] a,double alpha, double beta) {
     if ( depth == 0 ) {
       counter++;
@@ -193,6 +197,7 @@ class Main {
     }
     return beta;
   }
+  //  the maximizing part but it returns the move and not the evaluation
   public static coordinate [] altmaxi(int depth,piece [][] a,double alpha,double beta) {
     if ( depth == 0 ) {
       counter++;
@@ -229,7 +234,7 @@ class Main {
     System.out.println(alpha);
     return dubs;
   }
-
+//  the minimizing part but it returns a move and not an eval
   public static coordinate [] altmini( int depth,piece [][] a,double alpha, double beta) {
     if ( depth == 0 ) {
       counter++;
