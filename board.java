@@ -3,7 +3,8 @@ import java.util.Arrays;
 
 class board {
     piece[][] checker = new piece[8][8];
-
+    
+   //   implicit board constructor, creates new board with starting chess position
     board() {
         checker[0][0] = new piece('r', true, 'a', 1);
         checker[1][0] = new piece('n', true, 'b', 1);
@@ -42,7 +43,7 @@ class board {
 
     }
 
-
+   //   explicit board constructor, creates new board with forsynth edwards notation (FEN)
     board(String fen){
         boolean K = false;
         boolean Q = false;
@@ -156,6 +157,7 @@ class board {
             }
         }
     }
+    //  explicit constructor, converts 2D piece array "a" into a board
     board(piece[][] a) {
         for (int i = 0; i < 8; i++) {
             for (int w = 0; w < 8; w++) {
@@ -163,6 +165,7 @@ class board {
             }
         }
     }
+    //   returns the FEN string the corresponds to the current board. halfmove clock is not taken into account (but that isn't a problem)
     public static String toFen(piece[][] a,boolean color,int move){
         String fen = new String();
         String en = new String();
@@ -304,6 +307,7 @@ class board {
         fen+=move;
         return fen;
     }
+    //   evaluates the position shown on piece[][] a. depth is used because sooner checkmates are evaluated higher then checkmates that happen later
     public static double eval(piece[][] a,boolean color,int depth) {
         double num = 0;
         for (int i = 0; i < 8; i++) {
@@ -396,7 +400,7 @@ class board {
         }
         return num;
     }
-
+//   checks for mate by the color specified. True = white, false = black. I don't think I ever use this method honestly
     public static boolean isMate(piece[][] a, boolean color) {
         if (isCheck(a, color)) {
             coordinate[] arr = new coordinate[0];
@@ -420,7 +424,7 @@ class board {
 
         return false;
     }
-
+    //   checks for stalemate
     public static boolean isStale(piece[][] a, boolean color) {
         coordinate[] arr = new coordinate[0];
         for (int i = 0; i < 8; i++) {
