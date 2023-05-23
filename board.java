@@ -400,7 +400,7 @@ class board {
         }
         return num;
     }
-//   checks for mate by the color specified. True = white, false = black. I don't think I ever use this method honestly
+//   checks for mate by the color specified. True = white, false = black
     public static boolean isMate(piece[][] a, boolean color) {
         if (isCheck(a, color)) {
             coordinate[] arr = new coordinate[0];
@@ -442,7 +442,7 @@ class board {
 
         return true;
     }
-
+    // determines if the king of the color specified is under attack
     public static boolean isCheck(piece[][] a, boolean color) {
 
         boolean kingfound = false;
@@ -497,7 +497,7 @@ class board {
     public void nullPiece(coordinate a) {
         checker[a.getx()][a.gety()] = null;
     }
-
+    // manages complex peice movement. has castling, en passant, promotion
     public static piece[][] movePiece(piece[][] boar, coordinate a, coordinate b) {
         piece[][] board = new piece[8][8];
         for (int x = 0; x < 8; x++) {
@@ -584,7 +584,7 @@ class board {
 
         return board;
     }
-
+    // manages simple piece movement. This method just moves the pieces, nothing more.
     public static piece[][] movePiece2(piece[][] boar, coordinate a, coordinate b) {
         piece[][] board = new piece[8][8];
         for (int x = 0; x < 8; x++) {
@@ -609,7 +609,7 @@ class board {
         return board;
     }
 
-
+// manages complex computation of legal moves. includes check, checkmate, stalemate, discovered check, etc
     static coordinate[] legals(piece[][] checker, coordinate a) {
         piece thing = checker[a.getx()][a.gety()];
         coordinate[] arr = new coordinate[0];
@@ -1083,14 +1083,14 @@ class board {
         }
         return arr;
     }
-
+// not really sure why I made this method but its for appending coordinate arrays
     static coordinate[] append(coordinate[] arr, coordinate a) {
         arr = Arrays.copyOf(arr, arr.length + 1);
         arr[arr.length - 1] = a;
         return arr;
     }
 
-
+// simple legal moves. no check, etc.
     static coordinate[] legal(piece[][] checker, coordinate a) {
         piece thing = checker[a.getx()][a.gety()];
         coordinate[] arr = new coordinate[0];
